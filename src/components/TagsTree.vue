@@ -1,5 +1,5 @@
 <template>
-<div class="tags_tree_root">
+<div class="tags_tree_root" :class="{tags_tree_root_fixed: float}">
   <TagsTreeNode v-for="(group, index) in tags" :key="index" :group="group" :group_index="index" :is_last="index === tags.length - 1" @choose_tag="choose_tag"/>
 </div>
 </template>
@@ -14,16 +14,31 @@ export default {
   components: {
     TagsTreeNode
   },
+  mounted () {
+    window.addEventListener('scroll', this.onScroll)
+  },
+  beforeUnmount () {
+    window.removeEventListener('scroll', this.onScroll)
+  },
   props: ['tags'],
   data () {
   // 这里存放数据
     return {
+      float: false
     }
   },
   // 方法集合
   methods: {
     choose_tag (tagObj) {
       this.$emit('choose_tag', tagObj)
+    },
+    onScroll () {
+      const ws = document.documentElement.scrollTop
+      if (ws > 170) {
+        this.float = true
+      } else {
+        this.float = false
+      }
     }
   }
 }

@@ -3,7 +3,7 @@
     <div class="head_padding" v-if="this.$route.path!=='/'">
         <div class="head_bar_main_box">
           <div class="head_logo_box">
-            <img src="../assets/logo.png" class="head_logo"/>
+            <img src="../assets/sakamoto.png" class="head_logo"/>
           </div>
           <div>
             <SearchBar/>

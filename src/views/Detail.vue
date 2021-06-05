@@ -7,7 +7,9 @@
       <div class="global_fixed_center">
         <el-container>
           <el-aside width="300px">
+            <div class="content_float_box">
             <ContentBar :relatelaw="relatelaw" @click_content="handleClickContent" ref="contentbar" :class="{fixed_content_bar: float}"/>
+            </div>
           </el-aside>
           <el-main>
             <div class="detail_board_main_box">

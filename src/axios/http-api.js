@@ -1,4 +1,4 @@
-import instance from './request'
+import request from './request'
 
 export function query (data) {
   return request({

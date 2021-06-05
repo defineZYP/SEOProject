@@ -81,5 +81,11 @@
 .fixed_content_bar {
     position: fixed;
     top: -50px;
-    left: 12px;
+    left: 24px;
+}
+
+.content_float_box {
+    position: relative;
+    width: 100%;
+    min-width: 300px;
 }

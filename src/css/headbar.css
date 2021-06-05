@@ -71,8 +71,9 @@
 
 .head_logo {
     /* margin-left: 50px; */
-    width: 33px;
-    height: 33px;
+    margin-top: -15px;
+    width: 50px;
+    height: 50px;
 }
 
 .head_padding .bar {

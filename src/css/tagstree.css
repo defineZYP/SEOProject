@@ -13,6 +13,12 @@
     border-radius: 10px;
 }
 
+.tags_tree_root_fixed {
+    position: fixed;
+    top: 0px;
+    left: 24px;
+}
+
 .tags_tree_node {
     padding-bottom: 12px;
     border-bottom: 1px dashed #dbdee2;

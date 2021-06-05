@@ -5,7 +5,7 @@
     </div>
     <div class="shrink_zero flex_fixed_position flex_column_center_countainer" style="min-height:140px">
       <div class="home_img_box">
-        <img src="../assets/logo.png" class="home_img"/>
+        <img src="../assets/sakamoto.png" class="home_img"/>
       </div>
     </div>
     <div class="shrink_zero" style="max-height:160px padding:20px">

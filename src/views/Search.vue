@@ -187,7 +187,7 @@ export default {
             id: 'case1',
             tags: ['dragon', 'elf'],
             title: 'Dragon and elf',
-            summary: 'Once upon a time there was a dragon and an elf, and they wanted to defeat the demon king. But if one want to defeat the demon king, he must gather the sword of the brave and the ring of the sage. These two artifacts are the treasures of the human race, but they were lost in the civil strife of mankind. Can the dragon and the elf defeat the devil and save the world?',
+            summary: 'Once 我是谁 upon a time there was a dragon and an elf, and they wanted to defeat the demon king. But if one want to defeat the demon king, he must gather the sword of the brave and the ring of the sage. These two artifacts are the treasures of the human race, but they were lost in the civil strife of mankind. Can the dragon and the elf defeat the devil and save the world?',
             court: 'Life Court',
             filenum: 'The Secret File (102)',
             time: 'Magic Chronicle 1202'

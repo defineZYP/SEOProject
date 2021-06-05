@@ -6,7 +6,6 @@
   <div class="event_body">
     <h3 class="event_title" @click="gotodetail">
       <v-highlight :message="event['title']" :search='query'/>
-      {{ event['title'] }}
     </h3>
     <div class="event_info">
       <span class="info_span" v-if="event['court']">
@@ -25,7 +24,9 @@
       <div class="event_detail_padding">
         <div>
           <h4> 案件概要 </h4>
-          <p class="event_detail_summary"> {{ event['summary'] }}</p>
+          <p class="event_detail_summary">
+            <v-highlight :message="event['summary']" :search='query'/>
+          </p>
         </div>
       </div>
     </div>
@@ -44,7 +45,17 @@ export default {
   data () {
   // 这里存放数据
     return {
-      query: []
+    }
+  },
+  computed: {
+    query () {
+      const lis = []
+      for (const index in this.$route.query) {
+        lis.push(this.$route.query[index])
+        lis.push(this.$route.query[index].toLowerCase())
+        lis.push(this.$route.query[index].toUpperCase())
+      }
+      return lis
     }
   },
   mounted () {

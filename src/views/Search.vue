@@ -40,6 +40,7 @@ import HeadBar from '@/components/HeadBar.vue'
 import TagsBar from '@/components/TagsBar.vue'
 import TagsTree from '@/components/TagsTree.vue'
 import ResultsBoard from '@/components/ResultsBoard.vue'
+import { query } from '@/axios/http-api.js'
 
 export default {
   // import引入的组件需要注入到对象中才能使用
@@ -71,11 +72,16 @@ export default {
       sessionStorage.setItem('seo_vue_my_tags', JSON.stringify(this.tags))
       sessionStorage.setItem('seo_vue_my_page', this.currentPage)
     })
+    for (const index in this.$route.query) {
+      this.querys.push(this.$route.query[index])
+    }
+    this.getApiSearchInfo()
   },
   data () {
   // 这里存放数据
     return {
       currentPage: 1,
+      querys: [],
       // active_tags是一个object的数组，其中每一个元素是一个字典{'group index', 'tag index'}
       active_tags: [],
       tags: [
@@ -285,7 +291,38 @@ export default {
     },
     handleCurrentChange (val) {
       // 当前改变后的页数为val
-      console.log(val)
+      this.getApiSearchInfo()
+    },
+    getTags () {
+      // 得到tag
+      const legelTags = []
+      this.active_tags.forEach((item, index) => {
+        const groupIndex = item.group_index
+        const tIndex = item.index
+        legelTags.push(this.tags[groupIndex].tags[tIndex].tag)
+      })
+      return legelTags
+    },
+    getApiSearchInfo () {
+      // 得到信息
+      const legelTags = this.getTags()
+      console.log(legelTags)
+      const loading = this.$loading({
+        lock: true,
+        text: 'Loading',
+        spinner: 'el-icon-loading',
+        background: 'rgba(0, 0, 0, 1)'
+      })
+      setTimeout(() => {
+        loading.close()
+      }, 2000)
+      query({
+        page: this.currentPage,
+        query: this.querys,
+        tags: legelTags
+      }).then((result) => {
+        console.log(result)
+      })
     }
   }
 }

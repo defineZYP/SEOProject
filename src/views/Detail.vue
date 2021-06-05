@@ -50,6 +50,7 @@
 import HeadBar from '@/components/HeadBar.vue'
 import ContentBar from '@/components/ContentBar.vue'
 import InfoDisplayer from '@/components/InfoDisplayer.vue'
+import { getdetail } from '@/axios/http-api.js'
 
 export default {
   // import引入的组件需要注入到对象中才能使用
@@ -64,6 +65,7 @@ export default {
       float: false,
       actIndex: 0,
       blockBreakpoints: [],
+      id: '',
       relatelaw: ['A law entry 102', 'B law entry 202', 'C law entry 302'],
       partnames: ['anchor', 'peopleinfo', 'litigation_record', 'situation', 'judgement', 'result'],
       parts: {
@@ -92,6 +94,8 @@ export default {
   mounted () {
     this.initEls()
     window.addEventListener('scroll', this.onScroll)
+    this.id = this.$route.params.id
+    this.getApiDetailInfo()
   },
   beforeUnmount () {
     window.removeEventListener('scroll', this.onScroll)
@@ -134,6 +138,13 @@ export default {
       })
       this.actIndex = bestIndex
       this.$refs.contentbar.setActiveIndex(bestIndex)
+    },
+    getApiDetailInfo () {
+      getdetail({
+        id: this.id
+      }).then((result) => {
+        console.log(result)
+      })
     }
   }
 }

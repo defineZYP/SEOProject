@@ -1,0 +1,43 @@
+.home {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.home_img_box {
+    height: 100%;
+    max-height: 230px;
+    position: relative;
+    text-align: center;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-top: auto;
+}
+
+.home_img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    object-position: center bottom;
+    width: auto;
+    vertical-align: bottom;
+    transform:scale(0.7);
+}
+
+.home_search_box {
+    position: relative;
+    margin:0 auto;
+    padding-top: 6px;
+    width: auto;
+    max-width: 584px;
+}
+
+.home_message {
+    font-size: 10px;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.home_down_bar {
+    background-color: grey;
+}

@@ -1,0 +1,43 @@
+.search_padding {
+    padding: 0 16px 40px 16px;
+}
+
+.search_welcome_bar {
+    display: flex;
+    width: calc(100% - 88px);
+    min-width: 940px;
+    padding-top: 16px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font-weight: 400;
+    vertical-align: baseline;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.search_welcome_bar>h3 {
+    width: 70px;
+    height: 22px;
+    line-height: 22px;
+    font-size: 14px;
+    margin-top: 18px;
+}
+
+.search_tags_bar {
+    -webkit-box-flex: 1;
+    flex: 1;
+    width: auto;
+    overflow: hidden;
+}
+
+.tags {
+    width: 100%;
+    display: inline-block;
+    margin-top: 15px;
+}
+
+li, ol, ul {
+    list-style: none;
+}

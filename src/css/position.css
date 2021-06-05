@@ -1,0 +1,39 @@
+.shrink_zero {
+    flex-shrink: 0;         /* 说明这个不缩水，固定长flex_basis */
+    box-sizing: border-box;
+}
+
+.middle_fixed_height {
+    height: 120px;
+}
+
+.flex_center {
+    display: flex;
+    align-items: center;
+    padding: 6px
+}
+
+.flex_fixed_position {
+    min-height: 150px;
+    max-height: 290px;
+    height: calc(100% - 560px);
+}
+
+.flex_column_center_countainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.flex_grow_all {
+    flex-grow: 1;
+}
+
+.results_lists {
+    font-size: medium;
+    font-weight: normal;
+    line-height: 1.2;           /* 行间距 */
+    margin-top: 6px;
+    border: 0;
+    margin: 0;
+}

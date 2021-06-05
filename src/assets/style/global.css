@@ -1,0 +1,29 @@
+.el-menu.el-menu--horizontal {
+    border-bottom: none;
+}
+
+.tags>span {
+    max-width: 100%;
+    display: inline-block;
+    height: 30px;
+    /* background-color: grey; */
+    line-height: 27px;
+    text-align: center;
+    /* padding: 0 8px; */
+    margin: 0 12px 8px 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: grey;
+}
+
+.el-tag {
+    border-color: rgba(255, 255, 255, 1);
+}
+
+.el-tag .el-tag__close {
+    color: grey;
+}
+
+.content_bar>.block_of_two_content>.el-card.is-always-shadow, .el-card.is-hover-shadow:focus, .el-card.is-hover-shadow:hover {
+    box-shadow: 1px 6px 6px rgb(32 33 36 / 28%);
+}

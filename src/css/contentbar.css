@@ -1,0 +1,66 @@
+.content_bar {
+    margin: 30px 0px 20px 0px;
+    width: 280px;
+    min-height: 60px;
+    height: auto;
+    overflow: auto;
+    -webkit-box-flex: 1;
+    flex: 1;
+    padding-top: 5px;
+    background: hsla(0, 0%, 100%, 0.6);
+}
+
+.block_of_two_content {
+    margin: 20px 20px 20px 0;
+}
+
+.ugly {
+    float: left;
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    margin-right: 5px;
+    font-size: 16px;
+    font-style: inherit;
+}
+
+.active_ugly {
+    color: #1080e0
+}
+
+.text_box {
+    color: #666666;
+}
+
+.text_box:hover {
+    color: #1080e0;
+}
+
+.text_display {
+    color: #666666;
+    margin-left: 5px;
+    height: 30px;
+    line-height: 30px;
+    margin-right: 30px;
+    padding-right: 5px;
+    cursor: default;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.text_inside {
+    margin-left: 5px;
+    height: 30px;
+    line-height: 30px;
+    margin-right: 30px;
+    padding-right: 5px;
+    cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.active_text_inside {
+    color: #1080e0
+}

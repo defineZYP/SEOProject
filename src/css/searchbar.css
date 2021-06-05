@@ -1,0 +1,132 @@
+.search_bar_box {
+    width: 100%;
+    max-width: 584px;
+    box-sizing: border-box;
+}
+
+.bar {
+    background: #fff;
+    display: flex;
+    border: 1px solid #dfe1e5;
+    box-shadow: none;
+    border-radius: 24px;
+    z-index: 3;
+    height: 44px;
+    margin:0 auto;
+    max-width: 584px;
+    width: auto;
+}
+
+.bar:focus-within {
+    background-color: #fff;
+    box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
+    border-color: rgba(223, 225, 229, 0);
+}
+
+.bar:hover {
+    background-color: #fff;
+    box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
+    border-color: rgba(223, 225, 229, 0);
+}
+
+.bar_active {
+    background-color: #fff;
+    box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
+    border-color: rgba(223, 225, 229, 0);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.bar_box {
+    flex: 1;
+    display: flex;
+    padding: 5px 8px 0 16px;
+    padding-left: 14px;
+}
+
+.bar_search_icon {
+    display: flex;
+    align-items: center;
+    padding-right: 13px;
+    margin-top: -5px;
+}
+
+.bar_search_icon_box {
+    display: inline-block;
+    fill: currentColor;
+    line-height: 24px;
+    position: relative;
+    margin-top: 3px;
+    color: #9aa0a6;
+    height: 20px;
+    width: 20px;
+}
+
+.bar_input_box {
+    display: flex;
+    flex: 1;
+    flex-wrap: wrap;  /* 必要的时候拆分行 */
+}
+
+.bar_input_pad {
+    color: transparent;
+    flex: 100%;
+    white-space: pre;
+    height: 34px
+}
+
+.bar_form_input{
+    background-color: transparent;
+    border: none;
+    margin: 0;
+    padding: 0;
+    color: rgba(0, 0, 0, 0.87);
+    word-wrap: break-word;   /* 分割 */
+    outline: none;
+    display: flex;
+    flex: 100%;
+    -webkit-tap-highlight-color: transparent;
+    margin-top: -37px;
+    height: 34px;
+    font-size: 16px;
+}
+
+.bar_input_side {
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: row;
+    margin-top: -5px;
+    align-items: stretch;
+}
+
+.bar_clear_box {
+    padding-right: 4px;
+    display: flex;
+    flex: 1 0 auto;
+    cursor: pointer;
+    align-items: center;
+    border: 0;
+    background: transparent;
+    outline: none;
+    padding: 0 8px;
+    line-height: 44px;
+}
+
+.bar_clear_hidden_box {
+    margin-right: 12px;
+    height: 100%;
+    color: #70757a;
+    vertical-align: middle;
+    outline: none;
+    display: inline-block;
+    fill: currentColor;
+    line-height: 24px;
+    position: relative;
+    width: 24px;
+}
+
+.bar_clear_hidden_box svg {
+    display: block;
+    height: 100%;
+    width: 100%;
+}

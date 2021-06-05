@@ -1,0 +1,81 @@
+.head_bar_box {
+    width: 100%;
+    z-index: 128;
+    padding-bottom: 10px;
+    position: absolute;
+    margin-top: -36px;
+    width: 100%;
+}
+
+.not_home_head_bar_box {
+    min-width: 1200px;
+    z-index: 128;
+    margin-top: -20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.head_setting_box {
+    width: calc(100% - 800px);
+    display: inline-block;
+}
+
+.home_head_setting_box {
+    width: 100%;
+}
+
+.head_setting_flexbox {
+    float: right;
+    padding-left: 6px;
+    display: flex;
+    box-sizing: border-box;
+    height: 48px;
+    padding: 0 4px;
+    flex: 0 0 auto;
+    padding-top: 10px;
+}
+
+.head_change_margin {
+    background: #fff;
+    height: 69px;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    margin-top: -20px;
+}
+
+.head_wait_for_write {
+    height: 65px;
+}
+
+.head_padding {
+    height: 65px;
+    display: inline-block;
+}
+
+.head_bar_main_box {
+    padding-left: 0px;
+    margin: 0 auto;
+    position: relative;
+    margin-left: 80px;
+    width: 720px;
+}
+
+.head_logo_box {
+    margin-top: -2px;
+    position: absolute;
+    left: -90px;
+    padding: 4px 28px 0 30px;
+    top: 6px;
+}
+
+.head_logo {
+    /* margin-left: 50px; */
+    width: 33px;
+    height: 33px;
+}
+
+.head_padding .bar {
+    width: 720px;
+    max-width: 718px;
+}

@@ -114,6 +114,7 @@ export default {
         blockEls.push(document.getElementById(this.partnames[el]))
       }
       const total = document.body.scrollHeight - window.innerHeight
+      this.blockBreakpoints = []
       blockEls.forEach((item, index) => {
         // 在这里计算比例
         const breakPoint = item.offsetTop / document.body.scrollHeight * total

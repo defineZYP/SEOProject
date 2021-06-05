@@ -14,12 +14,6 @@ export default {
   components: {
     TagsTreeNode
   },
-  mounted () {
-    window.addEventListener('scroll', this.onScroll)
-  },
-  beforeUnmount () {
-    window.removeEventListener('scroll', this.onScroll)
-  },
   props: ['tags'],
   data () {
   // 这里存放数据

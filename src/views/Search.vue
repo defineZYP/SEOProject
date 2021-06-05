@@ -84,166 +84,107 @@ export default {
       querys: [],
       // active_tags是一个object的数组，其中每一个元素是一个字典{'group index', 'tag index'}
       active_tags: [],
+      tagidtoname: ['casekind', 'kind', 'court'],
       tags: [
         {
-          name: 'fruit',
+          name: '案由',
           tags: [
             {
-              tag: 'apple',
+              tag: '民事',
               ischoose: false
             },
             {
-              tag: 'pitch',
+              tag: '刑事',
               ischoose: false
             },
             {
-              tag: 'banana',
-              ischoose: false
-            },
-            {
-              tag: 'watermalen',
-              ischoose: false
-            },
-            {
-              tag: 'lemon',
+              tag: '行政',
               ischoose: false
             }
           ]
         },
         {
-          name: 'monster',
+          name: '文书种类',
           tags: [
             {
-              tag: 'dragon',
+              tag: '判决书',
               ischoose: false
             },
             {
-              tag: 'elf',
+              tag: '裁定书',
               ischoose: false
             },
             {
-              tag: 'semi-ancestral',
+              tag: '起诉书',
               ischoose: false
             },
             {
-              tag: 'orc',
+              tag: '不起诉书',
               ischoose: false
             },
             {
-              tag: 'demon',
+              tag: '调解书',
+              ischoose: false
+            },
+            {
+              tag: 'asdfasdf',
+              ischoose: false
+            },
+            {
+              tag: 'asdfasdf',
+              ischoose: false
+            },
+            {
+              tag: 'asdfasdf',
+              ischoose: false
+            },
+            {
+              tag: 'asdfasdf',
+              ischoose: false
+            },
+            {
+              tag: 'asdfasdf',
+              ischoose: false
+            },
+            {
+              tag: 'asdfasdf',
               ischoose: false
             }
           ]
         },
         {
-          name: 'profession',
+          name: '层级',
           tags: [
             {
-              tag: 'the brave',
+              tag: '最高人民法院',
               ischoose: false
             },
             {
-              tag: 'sage',
+              tag: '高级人民法院',
               ischoose: false
             },
             {
-              tag: 'the great mage',
+              tag: '中级人民法院',
               ischoose: false
             },
             {
-              tag: 'minister',
-              ischoose: false
-            },
-            {
-              tag: 'assassin',
-              ischoose: false
-            }
-          ]
-        },
-        {
-          name: 'npc',
-          tags: [
-            {
-              tag: 'tutor',
-              ischoose: false
-            },
-            {
-              tag: 'blacksmith',
-              ischoose: false
-            },
-            {
-              tag: 'administrator',
-              ischoose: false
-            },
-            {
-              tag: 'tavern lady',
-              ischoose: false
-            },
-            {
-              tag: 'mercenary',
+              tag: '基层人民法院',
               ischoose: false
             }
           ]
         }
       ],
       events: {
-        total: 1000,
-        details: [
-          {
-            id: 'case1',
-            tags: ['dragon', 'elf'],
-            title: 'Dragon and elf',
-            summary: 'Once 我是谁 upon a time there was a dragon and an elf, and they wanted to defeat the demon king. But if one want to defeat the demon king, he must gather the sword of the brave and the ring of the sage. These two artifacts are the treasures of the human race, but they were lost in the civil strife of mankind. Can the dragon and the elf defeat the devil and save the world?',
-            court: 'Life Court',
-            filenum: 'The Secret File (102)',
-            time: 'Magic Chronicle 1202'
-          },
-          {
-            id: 'case2',
-            tags: ['dragon', 'elf'],
-            title: 'Dragon and elf',
-            summary: 'Once upon a time there was a dragon and an elf, and they wanted to defeat the demon king. But if one want to defeat the demon king, he must gather the sword of the brave and the ring of the sage. These two artifacts are the treasures of the human race, but they were lost in the civil strife of mankind. Can the dragon and the elf defeat the devil and save the world?',
-            court: 'Life Court',
-            filenum: 'The Secret File (102)',
-            time: 'Magic Chronicle 1202'
-          },
-          {
-            id: 'case3',
-            tags: ['dragon', 'elf'],
-            title: 'Dragon and elf',
-            summary: 'Once upon a time there was a dragon and an elf, and they wanted to defeat the demon king. But if one want to defeat the demon king, he must gather the sword of the brave and the ring of the sage. These two artifacts are the treasures of the human race, but they were lost in the civil strife of mankind. Can the dragon and the elf defeat the devil and save the world?',
-            court: 'Life Court',
-            filenum: 'The Secret File (102)',
-            time: 'Magic Chronicle 1202'
-          },
-          {
-            id: 'case4',
-            tags: ['dragon', 'elf'],
-            title: 'Dragon and elf',
-            summary: 'Once upon a time there was a dragon and an elf, and they wanted to defeat the demon king. But if one want to defeat the demon king, he must gather the sword of the brave and the ring of the sage. These two artifacts are the treasures of the human race, but they were lost in the civil strife of mankind. Can the dragon and the elf defeat the devil and save the world?',
-            court: 'Life Court',
-            filenum: 'The Secret File (102)',
-            time: 'Magic Chronicle 1202'
-          },
-          {
-            id: 'case5',
-            tags: ['dragon', 'elf'],
-            title: 'Dragon and elf',
-            summary: 'Once upon a time there was a dragon and an elf, and they wanted to defeat the demon king. But if one want to defeat the demon king, he must gather the sword of the brave and the ring of the sage. These two artifacts are the treasures of the human race, but they were lost in the civil strife of mankind. Can the dragon and the elf defeat the devil and save the world?',
-            court: 'Life Court',
-            filenum: 'The Secret File (102)',
-            time: 'Magic Chronicle 1202'
-          },
-          {
-            id: 'case6',
-            tags: ['dragon', 'elf'],
-            title: 'Dragon and elf',
-            summary: 'Once upon a time there was a dragon and an elf, and they wanted to defeat the demon king. But if one want to defeat the demon king, he must gather the sword of the brave and the ring of the sage. These two artifacts are the treasures of the human race, but they were lost in the civil strife of mankind. Can the dragon and the elf defeat the devil and save the world?',
-            court: 'Life Court',
-            filenum: 'The Secret File (102)',
-            time: 'Magic Chronicle 1202'
-          }
-        ]
+        total: 0,
+        details: [{
+          id: 'case1',
+          tags: ['dragon', 'elf'],
+          title: 'Dragon and elf',
+          summary: 'Once 我是谁 upon a time there was a dragon and an elf, and they wanted to defeat the demon king. But if one want to defeat the demon king, he must gather the sword of the brave and the ring of the sage. These two artifacts are the treasures of the human race, but they were lost in the civil strife of mankind. Can the dragon and the elf defeat the devil and save the world?',
+          court: 'Life Court',
+          filenum: 'The Secret File (102)',
+          time: 'Magic Chronicle 1202'
+        }]
       }
     }
   },
@@ -295,11 +236,20 @@ export default {
     },
     getTags () {
       // 得到tag
-      const legelTags = []
+      const legelTags = {
+        keyword: this.querys[0],
+        casekind: '',
+        lawyer: '',
+        case_id: '',
+        judger: '',
+        province: '',
+        kind: '',
+        court: ''
+      }
       this.active_tags.forEach((item, index) => {
         const groupIndex = item.group_index
         const tIndex = item.index
-        legelTags.push(this.tags[groupIndex].tags[tIndex].tag)
+        legelTags[this.tagidtoname[groupIndex]] = this.tags[groupIndex].tags[tIndex].tag
       })
       return legelTags
     },
@@ -316,12 +266,10 @@ export default {
       setTimeout(() => {
         loading.close()
       }, 2000)
-      query({
-        page: this.currentPage,
-        query: this.querys,
-        tags: legelTags
-      }).then((result) => {
-        console.log(result)
+      query(legelTags).then((result) => {
+        const data = result.data
+        this.events.total = data.total
+        this.events.details = data.details
       })
     }
   }

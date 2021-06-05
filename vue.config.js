@@ -7,10 +7,10 @@ module.exports = {
   publicPath: '/',
   devServer: {
     host: 'localhost',
-    port: '8080',
+    port: 8081,
     proxy: {
       '/api': {
-        target: 'https://localhost:8888/api/',
+        target: 'http://localhost:5000/api/',
         ws: true,
         changeOrigin: true,
         pathRewrite: {
@@ -32,5 +32,4 @@ module.exports = {
   configureWebpack: {
     name: name
   }
-
 }

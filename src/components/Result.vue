@@ -5,7 +5,8 @@
   </p>
   <div class="event_body">
     <h3 class="event_title" @click="gotodetail">
-      <v-highlight :message="event['title']" :search='query'/>
+      <!-- <v-highlight :message="event['title']" :search='query'/> -->
+      <div v-html="event['title']"/>
     </h3>
     <div class="event_info">
       <span class="info_span" v-if="event['court']">
@@ -24,9 +25,9 @@
       <div class="event_detail_padding">
         <div>
           <h4> 案件概要 </h4>
-          <p class="event_detail_summary">
-            <v-highlight :message="event['summary']" :search='query'/>
-          </p>
+          <div class="event_detail_summary">
+            <div v-html="event['summary']"></div>
+          </div>
         </div>
       </div>
     </div>

@@ -2,7 +2,7 @@ import request from './request'
 
 export function query (data) {
   return request({
-    url: '/api/search',
+    url: '/api/cases/search',
     method: 'get',
     params: data
   })
@@ -10,7 +10,7 @@ export function query (data) {
 
 export function getdetail (data) {
   return request({
-    url: '/api/detail',
+    url: '/api/cases/detail',
     method: 'get',
     params: data
   })

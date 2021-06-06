@@ -40,7 +40,7 @@ import HeadBar from '@/components/HeadBar.vue'
 import TagsBar from '@/components/TagsBar.vue'
 import TagsTree from '@/components/TagsTree.vue'
 import ResultsBoard from '@/components/ResultsBoard.vue'
-import { query } from '@/axios/http-api.js'
+import axios from 'axios'
 
 export default {
   // import引入的组件需要注入到对象中才能使用
@@ -84,21 +84,16 @@ export default {
       querys: [],
       // active_tags是一个object的数组，其中每一个元素是一个字典{'group index', 'tag index'}
       active_tags: [],
-      tagidtoname: ['casekind', 'kind', 'court', 'province'],
+      tagidtoname: ['casekind', 'kind', 'province'],
       tags: [
         {
           name: '案由',
-          tags: ['民事', '行政', '执行', '行政', '赔偿'],
+          tags: ['民事案件', '刑事案件', '执行案件', '行政案件', '赔偿案件'],
           is_choose: []
         },
         {
           name: '文书种类',
           tags: ['判决书', '裁定书', '起诉书', '不起诉书', '调解书'],
-          is_choose: []
-        },
-        {
-          name: '层级',
-          tags: ['最高人民法院', '高级人民法院', '中级人民法院', '基层人民法院'],
           is_choose: []
         },
         {
@@ -201,14 +196,22 @@ export default {
         spinner: 'el-icon-loading',
         background: 'rgba(0, 0, 0, 1)'
       })
-      setTimeout(() => {
-        loading.close()
-      }, 2000)
-      query(legelTags).then((result) => {
+      axios({
+        url: '/api/cases/search/',
+        method: 'post',
+        data: ({
+          legelTags
+        }),
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      }).then((result) => {
         const data = result.data
         this.events.total = data.total
         this.events.details = data.details
+        // loading.close()
       })
+      loading.close()
     }
   }
 }

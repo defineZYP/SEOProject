@@ -113,3 +113,11 @@
     color: #31415b;
     text-align: justify;
 }
+
+.event_detail_summary>div>span {
+    color: red;
+}
+
+.event_title>div>span {
+    color: red;
+}

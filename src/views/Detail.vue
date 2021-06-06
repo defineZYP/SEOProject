@@ -8,7 +8,7 @@
         <el-container>
           <el-aside width="300px">
             <div class="content_float_box">
-            <ContentBar :relatelaw="relatelaw" @click_content="handleClickContent" ref="contentbar" :class="{fixed_content_bar: float}"/>
+            <ContentBar :relate_cases="relate_cases" :content="content" @click_content="handleClickContent" @gotoSimi="gotoSimi" ref="contentbar" :class="{fixed_content_bar: float}"/>
             </div>
           </el-aside>
           <el-main>
@@ -50,7 +50,7 @@
 import HeadBar from '@/components/HeadBar.vue'
 import ContentBar from '@/components/ContentBar.vue'
 import InfoDisplayer from '@/components/InfoDisplayer.vue'
-import { getdetail } from '@/axios/http-api.js'
+import axios from 'axios'
 
 export default {
   // import引入的组件需要注入到对象中才能使用
@@ -66,8 +66,10 @@ export default {
       actIndex: 0,
       blockBreakpoints: [],
       id: '',
+      relate_cases: ['A goodasdfasdfasdfasdfasdf case'],
       relatelaw: ['A law entry 102', 'B law entry 202', 'C law entry 302'],
       partnames: ['anchor', 'peopleinfo', 'litigation_record', 'situation', 'judgement', 'result'],
+      content: ['案件基本信息', '当事人信息', '诉讼记录', '案件基本情况', '审判分析', '结果'],
       parts: {
         peopleinfo: '当事人信息',
         litigation_record: '诉讼信息',
@@ -141,11 +143,89 @@ export default {
       this.$refs.contentbar.setActiveIndex(bestIndex)
     },
     getApiDetailInfo () {
-      getdetail({
-        id: this.id
-      }).then((result) => {
-        console.log(result)
+      const loading = this.$loading({
+        lock: true,
+        text: 'Loading',
+        spinner: 'el-icon-loading',
+        background: 'rgba(0, 0, 0, 1)'
       })
+      loading.close()
+      axios({
+        url: '/api/cases/detail/',
+        method: 'post',
+        data: ({
+          case_id: this.id
+        }),
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      }).then((result) => {
+        const data = result.data
+        this.id = data.case_id
+        const details = {
+          // '案件基本信息', '当事人信息', '诉讼记录', '案件基本情况', '审判分析', '结果'
+          title: data.title,
+          time: data.time,
+          court: data.court,
+          filenum: data.case_id,
+          main: {}
+        }
+        this.partnames = ['anchor']
+        this.content = ['案件基本信息']
+        this.parts = {}
+        if (data.peopleinfo.length !== 0) {
+          // 如果案件的当事人信息不为0
+          this.partnames.push('peopleinfo')
+          this.content.push('当事人信息')
+          this.parts.peopleinfo = '当事人信息'
+          details.main.peopleinfo = data.peopleinfo
+        }
+        if (data.ssjl.length !== 0) {
+          this.partnames.push('litigation_record')
+          this.content.push('诉讼记录')
+          this.parts.litigation_record = '诉讼记录'
+          details.main.litigation_record = data.ssjl
+        }
+        if (data.situation.length !== 0) {
+          this.partnames.push('situation')
+          this.content.push('案件基本情况')
+          this.parts.situation = '案件基本情况'
+          details.main.situation = data.situation
+        }
+        if (data.fenxi.length !== 0) {
+          this.partnames.push('judgement')
+          this.content.push('审判分析')
+          this.parts.judgement = '审判分析'
+          details.main.judgement = data.fenxi
+        }
+        if (data.judgement.length !== 0) {
+          this.partnames.push('result')
+          this.content.push('审判结果')
+          this.parts.result = '审判结果'
+          details.main.result = data.judgement
+        }
+        if (data.relate_law.length !== 0) {
+          this.partnames.push('relate_law')
+          this.content.push('相关法律')
+          this.parts.relate_law = '相关法律'
+          details.main.relate_law = data.relate_law
+        }
+        if (data.result.length !== 0) {
+          this.partnames.push('tail')
+          this.content.push('文尾')
+          this.parts.tail = '文尾'
+          details.main.tail = data.result
+        }
+        this.details = details
+        // this.relatelaw = data.relate_law
+        this.relate_cases = data.simi
+        loading.close()
+      })
+    },
+    gotoSimi (id) {
+      this.$router.push({ path: `/detail/${id}` })
+      this.id = id
+      this.getApiDetailInfo()
     }
   }
 }

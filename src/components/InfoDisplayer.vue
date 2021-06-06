@@ -7,7 +7,7 @@
   <el-collapse-transition>
   <div v-show="show" class="info_segment">
     <div class="info_segment_box">
-      <p v-for="(seg, index) in infos" :key="index">{{ seg }}</p>
+      <div v-for="(seg, index) in infos" :key="index"><p v-if="seg !== ''">{{ seg }}</p></div>
     </div>
   </div>
   </el-collapse-transition>

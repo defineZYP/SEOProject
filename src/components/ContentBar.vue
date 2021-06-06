@@ -1,13 +1,13 @@
 <template>
 <div class="content_bar">
   <div class="block_of_two_content">
-    <el-card class="box-card" shadow="always">
+    <el-card class="box-card" shadow="always" v-if="relate_cases.length !== 0">
       <template v-slot:header class="clearfix">
-        <span>相关法律</span>
+        <span>相关案件</span>
       </template>
-      <div v-for="(law, index) in relatelaw" :key="index" class="text item">
+      <div v-for="(law, index) in relate_cases" :key="index" class="text item simi" @click="gotoSimi(law)">
         <i class="ugly" style="color: #666666">•</i>
-        <span class="text_display">{{ law }}</span>
+        <span class="text_display simi">{{ law }}</span>
       </div>
     </el-card>
   </div>
@@ -34,12 +34,11 @@
 export default {
   // import引入的组件需要注入到对象中才能使用
   components: {},
-  props: ['relatelaw'],
+  props: ['relate_cases', 'content'],
   data () {
   // 这里存放数据
     return {
-      activeIndex: 0,
-      content: ['案件基本信息', '当事人信息', '诉讼记录', '案件基本情况', '审判分析', '结果']
+      activeIndex: 0
     }
   },
   // 方法集合
@@ -50,6 +49,9 @@ export default {
     },
     setActiveIndex (index) {
       this.activeIndex = index
+    },
+    gotoSimi (id) {
+      this.$emit('gotoSimi', id)
     }
   }
 }

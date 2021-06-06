@@ -109,7 +109,7 @@ export default {
         const data = result.data
         data.forEach((item, index) => {
           this.expand_bar.push(item)
-          this.expand_bar.push('recommand')
+          this.expand_type.push('recommand')
         })
       })
     },

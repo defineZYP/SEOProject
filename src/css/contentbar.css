@@ -14,7 +14,7 @@
     margin: 20px 20px 20px 0;
 }
 
-.ugly {
+.uglys {
     float: left;
     display: block;
     height: 30px;
@@ -62,5 +62,17 @@
 }
 
 .active_text_inside {
+    color: #1080e0
+}
+
+.simi {
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+}
+
+.simi:hover {
     color: #1080e0
 }

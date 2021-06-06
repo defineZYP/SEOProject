@@ -65,6 +65,12 @@ export default {
   created () {
     this.history = storage.get('_search_')
   },
+  mounted () {
+    if (this.$route.path === '/search') {
+      const q = this.$route.query.q
+      this.input = q
+    }
+  },
   // 监听属性 类似于data概念
   computed: {
     dropdownactive () {

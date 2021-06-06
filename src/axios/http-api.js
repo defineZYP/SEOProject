@@ -15,3 +15,11 @@ export function getdetail (data) {
     params: data
   })
 }
+
+export function getrecommand (data) {
+  return request({
+    url: 'api/cases/recommand',
+    method: 'get',
+    params: data
+  })
+}

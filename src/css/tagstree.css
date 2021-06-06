@@ -60,6 +60,8 @@
     cursor: default;
     background: #fff;
     color: #606060;
+    max-height: 200px;
+    overflow: scroll;
 }
 
 .node_content_box {
@@ -69,6 +71,11 @@
     cursor: pointer;
     white-space: nowrap;
     padding: 0 24px;
+    color: #666666;
+}
+
+.node_content_box:hover{
+    color: #1080e0;
 }
 
 .node_content_border {
@@ -99,7 +106,6 @@
 }
 
 .content_tag {
-    color: #666666;
     margin-left: 5px;
     height: 30px;
     line-height: 30px;

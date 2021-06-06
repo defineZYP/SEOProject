@@ -12,7 +12,7 @@
         <div class="node_content_border">
           <div class="node_content_tag">
             <i class="ugly">•</i>
-            <span :class="{content_tag:true, active_content_tag:tag['ischoose']}">{{ tag['tag'] }}</span>
+            <span :class="{content_tag:true, active_content_tag:is_choose.indexOf(index) !== -1}">{{ tag }}</span>
           </div>
         </div>
       </div>
@@ -29,7 +29,7 @@
 export default {
   // import引入的组件需要注入到对象中才能使用
   components: {},
-  props: ['group', 'group_index', 'is_last'],
+  props: ['group', 'group_index', 'is_last', 'is_choose'],
   data () {
   // 这里存放数据
     return {
@@ -41,7 +41,7 @@ export default {
   // 方法集合
   methods: {
     emit_tag (tag, index) {
-      this.$emit('choose_tag', { tag: tag.tag, group_index: this.group_index, index: index })
+      this.$emit('choose_tag', { tag: tag, group_index: this.group_index, index: index })
     }
   }
 }

@@ -1,6 +1,6 @@
 <template>
 <div class="tags_tree_root" :class="{tags_tree_root_fixed: float}">
-  <TagsTreeNode v-for="(group, index) in tags" :key="index" :group="group" :group_index="index" :is_last="index === tags.length - 1" @choose_tag="choose_tag"/>
+  <TagsTreeNode v-for="(group, index) in tags" :is_choose="group['is_choose']" :key="index" :group="group" :group_index="index" :is_last="index === tags.length - 1" @choose_tag="choose_tag"/>
 </div>
 </template>
 

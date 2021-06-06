@@ -4,7 +4,7 @@
     <div class="drop_down_bar_splitline"/>
     <ul class="drop_down_bar_ul">
       <li v-for="(item, index) in messages" :key="index" :class="{history_li:true, history_hover_li:index === hoverIndex}">
-        <HisAndRecmd :keywords="messages[index]" :index="index" v-on:historyData="historyData" v-on:deleteData="deleteData"/>
+        <HisAndRecmd :keywords="messages[index]" :type="types[index]" :index="index" v-on:historyData="historyData" v-on:deleteData="deleteData"/>
       </li>
     </ul>
   </div>
@@ -22,7 +22,7 @@ export default {
   components: {
     HisAndRecmd
   },
-  props: ['messages'],
+  props: ['messages', 'types'],
   data () {
     // 这里存放数据
     return {

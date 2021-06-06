@@ -34,7 +34,7 @@
     </div>
   </div>
 </div>
-<DropDownBar @click="clickdropdown" :messages="expand_bar" v-show="dropdownactive" v-on:hoverData="hoverData" v-on:deleteData="deleteData" ref="ddbar"/>
+<DropDownBar @click="clickdropdown" :messages="expand_bar" :types="expand_type" v-show="dropdownactive" v-on:hoverData="hoverData" v-on:deleteData="deleteData" ref="ddbar"/>
 </template>
 
 <script>
@@ -42,6 +42,7 @@
 import { saveSearch, deleteSearch } from '@/utils/cache.js'
 import storage from 'good-storage'
 import DropDownBar from '@/components/DropDownBar'
+import { getrecommand } from '@/axios/http-api.js'
 // import HisAndRecmd from '@/components/HisAndRecmd'
 
 export default {
@@ -57,6 +58,7 @@ export default {
       history: [],
       recommand: [],
       expand_bar: [],
+      expand_type: [],
       chineseFlag: false
     }
   },
@@ -84,10 +86,22 @@ export default {
     getExpand () {
       // 在这里进行expand_bar的操作
       this.expand_bar = []
+      this.expand_type = []
       this.history.forEach((item, index) => {
         if (item.indexOf(this.input) === 0) {
           this.expand_bar.push(item)
+          this.expand_type.push('history')
         }
+      })
+      // 同时在这里需要得到推荐
+      getrecommand({
+        query: this.input
+      }).then((result) => {
+        const data = result.data
+        data.forEach((item, index) => {
+          this.expand_bar.push(item)
+          this.expand_bar.push('recommand')
+        })
       })
     },
     getSearches () {

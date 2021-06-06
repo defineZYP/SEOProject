@@ -84,94 +84,27 @@ export default {
       querys: [],
       // active_tags是一个object的数组，其中每一个元素是一个字典{'group index', 'tag index'}
       active_tags: [],
-      tagidtoname: ['casekind', 'kind', 'court'],
+      tagidtoname: ['casekind', 'kind', 'court', 'province'],
       tags: [
         {
           name: '案由',
-          tags: [
-            {
-              tag: '民事',
-              ischoose: false
-            },
-            {
-              tag: '刑事',
-              ischoose: false
-            },
-            {
-              tag: '行政',
-              ischoose: false
-            }
-          ]
+          tags: ['民事', '行政', '执行', '行政', '赔偿'],
+          is_choose: []
         },
         {
           name: '文书种类',
-          tags: [
-            {
-              tag: '判决书',
-              ischoose: false
-            },
-            {
-              tag: '裁定书',
-              ischoose: false
-            },
-            {
-              tag: '起诉书',
-              ischoose: false
-            },
-            {
-              tag: '不起诉书',
-              ischoose: false
-            },
-            {
-              tag: '调解书',
-              ischoose: false
-            },
-            {
-              tag: 'asdfasdf',
-              ischoose: false
-            },
-            {
-              tag: 'asdfasdf',
-              ischoose: false
-            },
-            {
-              tag: 'asdfasdf',
-              ischoose: false
-            },
-            {
-              tag: 'asdfasdf',
-              ischoose: false
-            },
-            {
-              tag: 'asdfasdf',
-              ischoose: false
-            },
-            {
-              tag: 'asdfasdf',
-              ischoose: false
-            }
-          ]
+          tags: ['判决书', '裁定书', '起诉书', '不起诉书', '调解书'],
+          is_choose: []
         },
         {
           name: '层级',
-          tags: [
-            {
-              tag: '最高人民法院',
-              ischoose: false
-            },
-            {
-              tag: '高级人民法院',
-              ischoose: false
-            },
-            {
-              tag: '中级人民法院',
-              ischoose: false
-            },
-            {
-              tag: '基层人民法院',
-              ischoose: false
-            }
-          ]
+          tags: ['最高人民法院', '高级人民法院', '中级人民法院', '基层人民法院'],
+          is_choose: []
+        },
+        {
+          name: '地域',
+          tags: ['北京', '上海', '天津', '重庆', '河北', '山西', '辽宁', '吉林', '黑龙江', '江苏', '浙江', '安徽', '福建', '江西', '山东', '河南', '湖北', '湖南', '广东', '海南', '四川', '贵州', '云南', '陕西', '甘肃', '青海', '台湾', '内蒙古', '广西', '西藏', '宁夏', '新疆', '香港', '澳门'],
+          is_choose: []
         }
       ],
       events: {
@@ -198,16 +131,19 @@ export default {
       const groupIndex = tagObj.group_index
       const index = tagObj.index
       // 设置ischoose
-      this.tags[groupIndex].tags[index].ischoose = !this.tags[groupIndex].tags[index].ischoose
+      // this.tags[groupIndex].tags[index].ischoose = !this.tags[groupIndex].tags[index].ischoose
+      const tindex = this.tags[groupIndex].is_choose.indexOf(index)
       // 根据ischoose不同设置标签
-      if (this.tags[groupIndex].tags[index].ischoose) {
+      if (tindex === -1) {
         // 如果点击之后是true，说明要设置
-        this.$refs.tags_bar.addTag(this.tags[groupIndex].tags[index].tag)
+        this.tags[groupIndex].is_choose.push(index)
+        this.$refs.tags_bar.addTag(this.tags[groupIndex].tags[index])
         // 加入active_tags
         this.active_tags.push({ group_index: groupIndex, index: index })
       } else {
         // 否则点击之后为false，说明要删除tag
-        this.$refs.tags_bar.minTag(this.tags[groupIndex].tags[index].tag)
+        this.tags[groupIndex].is_choose.splice(tindex, 1)
+        this.$refs.tags_bar.minTag(this.tags[groupIndex].tags[index])
         const ftIndex = this.active_tags.findIndex((item) => {
           const tGroupId = item.group_index
           const tIndex = item.index
@@ -215,14 +151,16 @@ export default {
         })
         this.active_tags.splice(ftIndex, 1)
       }
+      console.log(this.tags[groupIndex].is_choose)
     },
     delete_tag_label (tag) {
       // 删除一个label
       const ftIndex = this.active_tags.findIndex((item) => {
         const tGroupId = item.group_index
         const tIndex = item.index
-        if (this.tags[tGroupId].tags[tIndex].tag === tag) {
-          this.tags[tGroupId].tags[tIndex].ischoose = false
+        if (this.tags[tGroupId].tags[tIndex] === tag) {
+          const index = this.tags[tGroupId].is_choose.indexOf(tIndex)
+          this.tags[tGroupId].is_choose.splice(index, 1)
           return true
         } else {
           return false
@@ -249,7 +187,7 @@ export default {
       this.active_tags.forEach((item, index) => {
         const groupIndex = item.group_index
         const tIndex = item.index
-        legelTags[this.tagidtoname[groupIndex]] = this.tags[groupIndex].tags[tIndex].tag
+        legelTags[this.tagidtoname[groupIndex]] = this.tags[groupIndex].tags[tIndex]
       })
       return legelTags
     },

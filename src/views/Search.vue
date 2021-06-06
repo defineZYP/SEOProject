@@ -175,19 +175,19 @@ export default {
     getTags () {
       // 得到tag
       const legelTags = {
-        keyword: this.querys[0],
-        casekind: '',
-        lawyer: '',
-        case_id: '',
-        judger: '',
-        province: '',
-        kind: '',
-        court: ''
+        keyword: this.querys,
+        casekind: [],
+        lawyer: [],
+        case_id: [],
+        judger: [],
+        province: [],
+        kind: [],
+        court: []
       }
       this.active_tags.forEach((item, index) => {
         const groupIndex = item.group_index
         const tIndex = item.index
-        legelTags[this.tagidtoname[groupIndex]] = this.tags[groupIndex].tags[tIndex]
+        legelTags[this.tagidtoname[groupIndex]].push(this.tags[groupIndex].tags[tIndex])
       })
       return legelTags
     },

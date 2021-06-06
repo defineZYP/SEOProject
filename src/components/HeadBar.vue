@@ -6,7 +6,7 @@
             <img src="../assets/sakamoto.png" class="head_logo"/>
           </div>
           <div>
-            <SearchBar/>
+            <SearchBar @searchQuery="searchQuery"/>
           </div>
         </div>
     </div>
@@ -40,7 +40,9 @@ export default {
   },
   // 方法集合
   methods: {
-
+    searchQuery () {
+      this.$emit('searchQuery')
+    }
   }
 }
 </script>

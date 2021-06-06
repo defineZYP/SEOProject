@@ -76,6 +76,9 @@ export default {
       if (this.input !== '') {
         saveSearch(this.input)
         this.$refs.search_input.blur()
+        if (this.$route.path === '/search') {
+          this.$emit('searchQuery')
+        }
         this.$router.push({ path: '/search', query: { q: this.input } })
       }
     },

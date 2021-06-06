@@ -1,6 +1,7 @@
 import request from './request'
 
 export function query (data) {
+  console.log(data)
   return request({
     url: '/api/cases/search',
     method: 'get',

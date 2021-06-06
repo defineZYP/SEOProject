@@ -2,7 +2,7 @@
   <div class="results_main scroll_bar_top">
     <el-backtop></el-backtop>
     <div class="search_results_page">
-      <HeadBar/>
+      <HeadBar @searchQuery="getApiSearchInfo"/>
     </div>
     <TagsBar ref="tags_bar" @delete_tag_label="delete_tag_label"/>
     <div class="results_board">

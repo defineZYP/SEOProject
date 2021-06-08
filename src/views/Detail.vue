@@ -220,6 +220,9 @@ export default {
         // this.relatelaw = data.relate_law
         this.relate_cases = data.simi
         loading.close()
+      }).catch((error) => {
+        console.log(error)
+        this.$router.push({ path: '/404' })
       })
     },
     gotoSimi (id) {

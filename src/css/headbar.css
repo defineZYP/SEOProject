@@ -16,7 +16,7 @@
 }
 
 .head_setting_box {
-    width: calc(100% - 800px);
+    width: calc(100% - 900px);
     display: inline-block;
 }
 
@@ -79,4 +79,8 @@
 .head_padding .bar {
     width: 720px;
     max-width: 718px;
+}
+
+.slot_flame {
+    margin-left: 20px;
 }

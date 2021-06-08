@@ -83,7 +83,7 @@ export default {
         saveSearch(this.input)
         this.$refs.search_input.blur()
         if (this.$route.path === '/search') {
-          this.$emit('searchQuery')
+          this.$emit('searchQuery', this.input)
         }
         this.$router.push({ path: '/search', query: { q: this.input } })
       }
@@ -94,12 +94,14 @@ export default {
     },
     getExpand () {
       // 在这里进行expand_bar的操作
+      const tempbar = []
+      const temptype = []
       this.expand_bar = []
       this.expand_type = []
       this.history.forEach((item, index) => {
         if (item.indexOf(this.input) === 0) {
-          this.expand_bar.push(item)
-          this.expand_type.push('history')
+          tempbar.push(item)
+          temptype.push('history')
         }
       })
       // 同时在这里需要得到推荐
@@ -108,9 +110,15 @@ export default {
       }).then((result) => {
         const data = result.data
         data.forEach((item, index) => {
-          this.expand_bar.push(item)
-          this.expand_type.push('recommand')
+          tempbar.push(item)
+          temptype.push('recommand')
         })
+        this.expand_bar = tempbar
+        this.expand_type = temptype
+      }).catch((error) => {
+        console.log(error)
+        this.expand_bar = tempbar
+        this.expand_type = temptype
       })
     },
     getSearches () {
@@ -153,7 +161,9 @@ export default {
       this.$refs.search_input.focus()
     },
     change_search () {
-      this.getExpand()
+      if (this.chineseFlag === false) {
+        this.getExpand()
+      }
     }
   },
   directives: {

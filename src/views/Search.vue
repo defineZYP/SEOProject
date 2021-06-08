@@ -2,7 +2,7 @@
   <div class="results_main scroll_bar_top">
     <el-backtop></el-backtop>
     <div class="search_results_page">
-      <HeadBar @searchQuery="getApiSearchInfo"/>
+      <HeadBar @searchQuery="searchQuery" @click_entry="click_entry"/>
     </div>
     <TagsBar ref="tags_bar" @delete_tag_label="delete_tag_label"/>
     <div class="results_board">
@@ -67,10 +67,16 @@ export default {
       this.currentPage = parseInt(page)
       sessionStorage.removeItem('seo_vue_my_page')
     }
+    const searchType = sessionStorage.getItem('seo_vue_search_type')
+    if (searchType) {
+      this.search_type = searchType
+      sessionStorage.removeItem('seo_vue_search_type')
+    }
     window.addEventListener('beforeunload', () => {
       sessionStorage.setItem('seo_vue_my_active', JSON.stringify(this.active_tags))
       sessionStorage.setItem('seo_vue_my_tags', JSON.stringify(this.tags))
       sessionStorage.setItem('seo_vue_my_page', this.currentPage)
+      sessionStorage.setItem('seo_vue_search_type', JSON.stringify(this.search_type))
     })
     for (const index in this.$route.query) {
       this.querys.push(this.$route.query[index])
@@ -81,6 +87,7 @@ export default {
   // 这里存放数据
     return {
       currentPage: 1,
+      search_type: '全文',
       querys: [],
       // active_tags是一个object的数组，其中每一个元素是一个字典{'group index', 'tag index'}
       active_tags: [],
@@ -163,6 +170,9 @@ export default {
       })
       this.active_tags.splice(ftIndex, 1)
     },
+    click_entry (type) {
+      this.search_type = type
+    },
     handleCurrentChange (val) {
       // 当前改变后的页数为val
       this.getApiSearchInfo()
@@ -171,6 +181,8 @@ export default {
       // 得到tag
       const legelTags = {
         keyword: this.querys,
+        type: this.search_type,
+        page: this.currentPage,
         casekind: [],
         lawyer: [],
         case_id: [],
@@ -186,16 +198,22 @@ export default {
       })
       return legelTags
     },
+    searchQuery (input) {
+      this.querys = []
+      this.querys.push(input)
+      this.getApiSearchInfo()
+    },
     getApiSearchInfo () {
       // 得到信息
+      console.log(this.search_type)
       const legelTags = this.getTags()
-      console.log(legelTags)
       const loading = this.$loading({
         lock: true,
         text: 'Loading',
         spinner: 'el-icon-loading',
         background: 'rgba(0, 0, 0, 1)'
       })
+      loading.close()
       axios({
         url: '/api/cases/search/',
         method: 'post',
@@ -207,11 +225,11 @@ export default {
         }
       }).then((result) => {
         const data = result.data
-        this.events.total = data.total
+        if (this.currentPage === 1) {
+          this.events.total = data.total
+        }
         this.events.details = data.details
-        // loading.close()
       })
-      loading.close()
     }
   }
 }

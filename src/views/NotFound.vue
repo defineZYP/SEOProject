@@ -1,45 +1,44 @@
 <template>
-<div> 404 not found </div>
+  <div class="home">
+    <div class="shrink_zero middle_fixed_height flex_center">
+      <!-- <HeadBar/> -->
+    </div>
+    <div class="shrink_zero flex_fixed_position flex_column_center_countainer" style="min-height:140px">
+      <div class="home_img_box">
+        <img src="../assets/sakamoto.png" class="home_img"/>
+      </div>
+    </div>
+    <div class="shrink_zero" style="max-height:160px padding:20px">
+      <div class="home_search_box">
+        <SearchBar/>
+      </div>
+    </div>
+    <div class="shrink_zero flex_grow_all">
+      <div class="home_message">
+        <HelloWorld msg="404 Not Found， 再查查别的东西吧"/>
+      </div>
+    </div>
+    <div class="shrink_zero home_down_bar">
+    </div>
+  </div>
 </template>
 
 <script>
-// 这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
-// 例如：import 《组件名称》 from '《组件路径》'
+// @ is an alias to /src
+import HelloWorld from '@/components/HelloWorld.vue'
+import SearchBar from '@/components/SearchBar.vue'
 
 export default {
-  // import引入的组件需要注入到对象中才能使用
-  components: {},
-  data () {
-  // 这里存放数据
-    return {
-
-    }
-  },
-  // 监听属性 类似于data概念
-  computed: {},
-  // 监控data中的数据变化
-  watch: {},
-  // 生命周期 - 创建完成（可以访问当前this实例）
-  created () {
-
-  },
-  // 生命周期 - 挂载完成（可以访问DOM元素）
-  mounted () {
-
-  },
-  beforeCreate () { }, // 生命周期 - 创建之前
-  beforeMount () { }, // 生命周期 - 挂载之前
-  beforeUpdate () { }, // 生命周期 - 更新之前
-  updated () { }, // 生命周期 - 更新之后
-  activated () { }, // 如果页面有keep-alive缓存功能，这个函数会触发
-  // 方法集合
-  methods: {
-
+  name: 'Home',
+  components: {
+    HelloWorld,
+    SearchBar
   }
 }
 </script>
 
 <style>
-/* @import url(); 引入公共css类 */
-
+@import url(../css/universal.css);
+@import url(../css/position.css);
+@import url(../css/home.css);
 </style>

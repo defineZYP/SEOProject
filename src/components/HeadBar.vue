@@ -1,6 +1,6 @@
 <template>
   <div :class="{head_bar_box:true, not_home_head_bar_box: this.$route.path!=='/'}">
-    <div class="head_padding" v-if="this.$route.path!=='/'">
+    <div class="head_padding" v-if="this.$route.path!=='/' && this.$route.path!=='/404'">
         <div class="head_bar_main_box">
           <div class="head_logo_box">
             <img src="../assets/sakamoto.png" class="head_logo"/>
@@ -10,6 +10,16 @@
           </div>
         </div>
     </div>
+    <el-dropdown :hide-on-click="false" class="slot_flame">
+    <span class="el-dropdown-link" style="float:left">
+      {{ search_type }}<i class="el-icon-arrow-down el-icon--right"></i>
+    </span>
+    <template v-slot:dropdown>
+      <el-dropdown-menu>
+        <el-dropdown-item v-for="(type, index) in types" :key="index" :disabled="search_type===type" @click="click_entry(type)">{{ type }}</el-dropdown-item>
+      </el-dropdown-menu>
+      </template>
+    </el-dropdown>
     <div :class="{head_setting_box:true, home_head_setting_box: this.$route.path==='/'}">
       <div class="head_setting_flexbox">
         <HeadSettingBar/>
@@ -35,13 +45,19 @@ export default {
   data () {
     // 这里存放数据
     return {
-
+      search_type: '全文',
+      types: ['全文', '律师律所', '案号', '法条', '法院']
     }
   },
   // 方法集合
   methods: {
-    searchQuery () {
-      this.$emit('searchQuery')
+    searchQuery (input) {
+      this.$emit('searchQuery', input)
+      sessionStorage.setItem('seo_vue_search_type', JSON.stringify(this.search_type))
+    },
+    click_entry (type) {
+      this.search_type = type
+      this.$emit('click_entry', type)
     }
   }
 }

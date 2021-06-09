@@ -149,7 +149,7 @@ export default {
         spinner: 'el-icon-loading',
         background: 'rgba(0, 0, 0, 1)'
       })
-      loading.close()
+      // loading.close()
       axios({
         url: '/api/cases/detail/',
         method: 'post',

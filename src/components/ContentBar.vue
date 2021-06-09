@@ -18,7 +18,7 @@
       </template>
       <div v-for="(entry, index) in content" :key="index" class="text item" @click="handleClickContent(index)">
         <div class="text_box">
-          <i :class="{ugly:true, active_ugly:index === activeIndex}">•</i>
+          <i :class="{uglys:true, active_ugly:index === activeIndex}">•</i>
           <span :class="{text_inside:true, active_text_inside:index === activeIndex}">{{ entry }}</span>
         </div>
       </div>

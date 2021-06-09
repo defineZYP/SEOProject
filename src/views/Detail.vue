@@ -222,7 +222,7 @@ export default {
         loading.close()
       }).catch((error) => {
         console.log(error)
-        this.$router.push({ path: '/404' })
+        this.$router.replace({ path: '/404' })
       })
     },
     gotoSimi (id) {

@@ -100,8 +100,8 @@ export default {
       this.expand_type = []
       this.history.forEach((item, index) => {
         if (item.indexOf(this.input) === 0) {
-          tempbar.push(item)
-          temptype.push('history')
+          this.expand_bar.push(item)
+          this.expand_type.push('history')
         }
       })
       // 同时在这里需要得到推荐
@@ -113,12 +113,10 @@ export default {
           tempbar.push(item)
           temptype.push('recommand')
         })
-        this.expand_bar = tempbar
-        this.expand_type = temptype
+        this.expand_bar.push(tempbar)
+        this.expand_type.push(temptype)
       }).catch((error) => {
         console.log(error)
-        this.expand_bar = tempbar
-        this.expand_type = temptype
       })
     },
     getSearches () {

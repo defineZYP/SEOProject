@@ -35,6 +35,12 @@ export default {
     HelloWorld,
     SearchBar,
     HeadBar
+  },
+  created () {
+    sessionStorage.removeItem('seo_vue_my_active')
+    sessionStorage.removeItem('seo_vue_my_tags')
+    sessionStorage.removeItem('seo_vue_my_page')
+    sessionStorage.removeItem('seo_vue_search_type')
   }
 }
 </script>

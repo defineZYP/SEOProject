@@ -51,7 +51,7 @@ export default {
     ResultsBoard
   },
   created () {
-    // // 刷新的时候看能不能搞到之前的缓存
+    // 刷新的时候看能不能搞到之前的缓存
     const active = JSON.parse(sessionStorage.getItem('seo_vue_my_active'))
     if (active) {
       this.active_tags = active
@@ -65,18 +65,17 @@ export default {
     const page = sessionStorage.getItem('seo_vue_my_page')
     if (page) {
       this.currentPage = parseInt(page)
-      sessionStorage.removeItem('seo_vue_my_page')
+      sessionStorage.removeItem('seo_vue_my_page', 1)
     }
     const searchType = sessionStorage.getItem('seo_vue_search_type')
     if (searchType) {
       this.search_type = searchType
-      sessionStorage.removeItem('seo_vue_search_type')
     }
     window.addEventListener('beforeunload', () => {
       sessionStorage.setItem('seo_vue_my_active', JSON.stringify(this.active_tags))
       sessionStorage.setItem('seo_vue_my_tags', JSON.stringify(this.tags))
       sessionStorage.setItem('seo_vue_my_page', this.currentPage)
-      sessionStorage.setItem('seo_vue_search_type', JSON.stringify(this.search_type))
+      sessionStorage.setItem('seo_vue_search_type', this.search_type)
     })
     for (const index in this.$route.query) {
       this.querys.push(this.$route.query[index])
@@ -110,7 +109,7 @@ export default {
         }
       ],
       events: {
-        total: 0,
+        total: 110,
         details: [{
           id: 'case1',
           tags: ['dragon', 'elf'],
@@ -153,7 +152,6 @@ export default {
         })
         this.active_tags.splice(ftIndex, 1)
       }
-      console.log(this.tags[groupIndex].is_choose)
     },
     delete_tag_label (tag) {
       // 删除一个label
@@ -202,6 +200,7 @@ export default {
       this.querys = []
       this.querys.push(input)
       this.getApiSearchInfo()
+      this.currentPage = 1
     },
     getApiSearchInfo () {
       // 得到信息
@@ -213,7 +212,7 @@ export default {
         spinner: 'el-icon-loading',
         background: 'rgba(0, 0, 0, 1)'
       })
-      loading.close()
+      // loading.close()
       axios({
         url: '/api/cases/search/',
         method: 'post',
@@ -227,8 +226,10 @@ export default {
         const data = result.data
         if (this.currentPage === 1) {
           this.events.total = data.total
+          console.log(data.total)
         }
         this.events.details = data.details
+        loading.close()
       })
     }
   }

@@ -10,7 +10,7 @@
           </div>
         </div>
     </div>
-    <el-dropdown :hide-on-click="false" class="slot_flame">
+    <el-dropdown :hide-on-click="false" class="slot_flame" v-if="this.$route.path!=='/' && this.$route.path!=='/404'">
     <span class="el-dropdown-link" style="float:left">
       {{ search_type }}<i class="el-icon-arrow-down el-icon--right"></i>
     </span>
@@ -42,6 +42,12 @@ export default {
   },
   computed: {
   },
+  created () {
+    const searchType = sessionStorage.getItem('seo_vue_search_type')
+    if (searchType) {
+      this.search_type = searchType
+    }
+  },
   data () {
     // 这里存放数据
     return {
@@ -53,7 +59,7 @@ export default {
   methods: {
     searchQuery (input) {
       this.$emit('searchQuery', input)
-      sessionStorage.setItem('seo_vue_search_type', JSON.stringify(this.search_type))
+      sessionStorage.setItem('seo_vue_search_type', this.search_type)
     },
     click_entry (type) {
       this.search_type = type
